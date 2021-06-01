@@ -5,12 +5,15 @@ import matplotlib.pyplot as plt
 
 
 if __name__ == "__main__":
-    pics = get_numbers_of_type(the_number=3)
-    print(pics.shape)
-    side = 3
-    pic = pics[0]
-    pic = np.pad(pic, side, mode='constant', constant_values=0)
+    #pics = get_numbers_of_type(the_number=2)
+    #print(pics.shape)
+    side = 15
+    checker = check_dispersion
+    #pic = pics[6]
+    #pic = np.pad(pic, side, mode='constant', constant_values=0)
 
-    checker = check_energy
-    pic2 = slide(pic, side, checker)
-    show_2_gray_pics(pic, pic2)
+    #pic2 = slide(pic, side, checker)
+    #show_2_gray_pics(pic, pic2)
+
+    pics = get_numbers_of_type(the_number=9)[0:50]
+    get_stat(pics, side, checker)

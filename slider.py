@@ -1,5 +1,7 @@
 import numpy as np
-
+import matplotlib.pyplot as plt
+from utils import *
+from slider import *
 
 def get_sensory_array(pic, centerx, centery, side):
     xmin = centerx - int(side / 2)
@@ -39,7 +41,7 @@ def check_energy(pic, centerx, centery, side):
     if sensory_array is None:
         return None
     checker = check_perepad
-    side_sensory_array=2
+    side_sensory_array = 2
     res = slide_no_pad(sensory_array, side_sensory_array, checker)
     return np.sum(res)
 
@@ -72,6 +74,14 @@ def slide_no_pad(pic, side, checker):
                 res[centery, centerx] = value
     return res
 
+
+def get_stat(pics, side, checker):
+    all_activations = np.array([])
+    for pic in pics:
+        activations_on_pic = slide(pic, side, checker).flatten()
+        all_activations = np.concatenate([all_activations, activations_on_pic])
+    plt.hist(all_activations)
+    plt.show()
 
 
 
