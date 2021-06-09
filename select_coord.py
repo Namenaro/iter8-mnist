@@ -7,8 +7,8 @@ class CoordSelector:
         self.image = image
         self.fig = plt.figure()
         self.fig.canvas.mpl_connect('button_press_event', self.onclick)
-        self.resultx = None
-        self.resulty = None
+        self.resultx = []
+        self.resulty = []
 
     def onclick(self, event):
         print('%s click: button=%d, x=%d, y=%d, xdata=%f, ydata=%f' %
@@ -19,8 +19,8 @@ class CoordSelector:
         plt.scatter(x, y, s=100, c='red', marker='o', alpha=0.4)
         self.fig.canvas.draw()
         self.fig.canvas.flush_events()
-        self.resultx = math.ceil(event.xdata)
-        self.resulty = math.ceil(event.ydata)
+        self.resultx.append(math.ceil(event.xdata))
+        self.resulty.append(math.ceil(event.ydata))
 
 
     def create_device(self):

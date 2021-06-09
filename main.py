@@ -19,5 +19,4 @@ if __name__ == "__main__":
 
     pics = get_numbers_of_type(the_number=9)[0:90]
     #get_stat(pics, side, checker)
-    x,y = select_coord_on_pic(pics[0])
-    print(x)
+    xs,ys = select_coord_on_pic(pics[0])
