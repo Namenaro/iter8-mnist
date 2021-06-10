@@ -73,7 +73,7 @@ def handly_select_exemplars_of4():
     np_images = get_numbers_of_type(the_number=4)
     indexes = [94,101,100]
     exemplars = list([np_images[ind] for ind in indexes])
-    draw_several(exemplars, indexes, rows=1, cols=int(len(indexes) ))
+    #draw_several(exemplars, indexes, rows=1, cols=int(len(indexes) ))
     return exemplars
 
 def handly_select_exemplars_of6():
@@ -88,4 +88,5 @@ def get_diverse_set_of_numbers(n):
     np_images = mnist_train.train_data.numpy()[0:n]
     #draw_several(np_images[0:35], list(range(0,35)), rows=5, cols=7)
     return np_images
+
 
