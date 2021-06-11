@@ -5,7 +5,7 @@ from select_coord import select_coord_on_pic
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import entropy
-from kneed import KneeLocator
+
 
 class DescriptorA:
     def __init__(self, checker, side):
@@ -30,9 +30,11 @@ class DescriptorA:
         return popravka, interest
 
     def count_interest(self, popravka):
-        b = 0.2
-        k = (1/b -1)/self.interest_thresh
+        decrease_rate = 0.2
+        k = (1/decrease_rate -1)/self.interest_thresh
         interest = 1/(k*popravka + 1)
+        if popravka>self.interest_thresh:
+            interest =0
         return interest
 
     def count_statistics(self, pics_for_stat,n_bins):
@@ -51,7 +53,15 @@ class DescriptorA:
         print("interest_thresh = " + str(self.interest_thresh))
 
 
-
+    def visualise_on_pic(self, pic):
+        pic = np.pad(pic, self.side, mode='constant', constant_values=0)
+        res = np.full_like(pic, 0)
+        for coordy in range(0, pic.shape[0]):
+            for coordx in range(0, pic.shape[1]):
+                popravka, interest = self.apply(pic, coordx, coordy)
+                if interest is not None:
+                    res[coordy, coordx] = interest*255
+        show_2_gray_pics(pic, res)
 
 
 def create_descriptor_A():
@@ -61,12 +71,13 @@ def create_descriptor_A():
     coordy = ys[0]
 
     checker = check_mean
-    side = 5
+    side = 6
 
     A = DescriptorA(checker, side)
     A.apply_first_time(pic, coordx, coordy)
     pics_for_stat = get_diverse_set_of_numbers(10)
     A.count_statistics(pics_for_stat, 5)
+    A.visualise_on_pic(pic)
     return A
 
 
