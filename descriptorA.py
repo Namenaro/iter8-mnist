@@ -37,7 +37,7 @@ class DescriptorA:
             interest =0
         return interest
 
-    def count_statistics(self, pics_for_stat,n_bins):
+    def count_statistics(self, pics_for_stat, n_bins):
         popravs = np.array([])
         for pic in pics_for_stat:
             activations_on_pic = slide(pic, self.side, self.checker).flatten()
