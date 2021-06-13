@@ -74,8 +74,8 @@ def create_descriptor_A():
     coordx = xs[0]
     coordy = ys[0]
 
-    checker = check_mean
-    side = 6
+    checker = check_dispersion
+    side = 4
 
     A = DescriptorA(checker, side)
     A.apply_first_time(pic, coordx, coordy)

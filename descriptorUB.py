@@ -27,21 +27,20 @@ class DescriptorUB:
 
         while True:
             X, Y = get_coords_for_radius(radius, centerx, centery)
-            B_activations = []
+            counter=0
             for i in range(len(X)):
                 x=X[i]
                 y=Y[i]
                 if x >= 0 and y >= 0 and x < xlen and y < ylen:
-                    B_activations.append(pic2[y, x])
-            if len(B_activations) == 0:
+                    counter+=1
+                    radiuses.append(radius)
+                    best_activations.append(pic2[y, x])
+            if counter==0:
                 break
             else:
-                radiuses.append(radius)
-                best_activations.append(max(B_activations))
-
                 radius=radius+1
-        plt.scatter(radiuses, best_activations)
-        print(best_activations)
+        plt.scatter(radiuses, best_activations,alpha=0.3)
+
         plt.show()
 
 if __name__ == "__main__":
