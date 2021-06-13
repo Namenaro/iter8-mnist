@@ -53,26 +53,19 @@ class DescriptorA:
         print("interest_thresh = " + str(self.interest_thresh))
 
     def get_reaction_on_pic(self, pic):
-        res = np.full_like(pic, 0)
-        pic = np.pad(pic, self.side, mode='constant', constant_values=0)
+        res = np.full_like(pic, 0.0, dtype=np.float64)
+        pic2 = np.pad(pic, self.side, mode='constant', constant_values=0)
 
         for coordy in range(0, res.shape[0]):
             for coordx in range(0, res.shape[1]):
-                popravka, interest = self.apply(pic, coordx + self.side, coordy + self.side)
+                popravka, interest = self.apply(pic2, coordx + self.side-1, coordy + self.side-1)
                 if interest is not None:
                     res[coordy, coordx] = interest
+        return res
 
     def visualise_on_pic(self, pic):
-        res = np.full_like(pic, 100)
-        pic = np.pad(pic, self.side, mode='constant', constant_values=0)
-
-        for coordy in range(0, res.shape[0]):
-            for coordx in range(0, res.shape[1]):
-                popravka, interest = self.apply(pic, coordx+self.side, coordy+self.side)
-                if interest is not None:
-                    res[coordy, coordx] = interest*255
-
-        show_2_gray_pics(pic[self.side:-self.side,self.side:-self.side], res)
+        res = self.get_reaction_on_pic(pic)
+        show_2_gray_pics(pic, res)
 
 
 def create_descriptor_A():

@@ -90,3 +90,13 @@ def get_diverse_set_of_numbers(n):
     return np_images
 
 
+def get_coords_for_radius(radius, centerx, centery):
+    #x+y=radius ->  y=radius-x
+    X=[]
+    Y=[]
+    for x in range(0,radius+1):
+        y=radius-x
+        X.append(x+centerx)
+        Y.append(y+centery)
+    return X,Y
+
