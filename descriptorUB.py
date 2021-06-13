@@ -6,10 +6,9 @@ class DescriptorUB:
         self.uy = uy
         self.descriptorB = descrB
 
-    def count_statistics(self, pics_for_stat, n_bins):
-        pass
 
-    def apply(self, pic, coordx, coordy):
-        # we find all local mimimas of popravca of descrB in all the pic
-        # we show pareto-portrait of a pic and analize it....
-            # probably we need here p-poratrait of the second pic with etalon. ew need two etalons here...
+    def get_all_hypotheses_in_point(self, pic, coordx, coordy):
+        pic2 = self.descriptorB.get_reaction_on_pic(pic)
+        centerx= coordx+self.ux
+        centery= coordy+self.uy
+
