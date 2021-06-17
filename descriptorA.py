@@ -33,8 +33,8 @@ class DescriptorA:
         decrease_rate = 0.2
         k = (1/decrease_rate -1)/self.interest_thresh
         interest = 1/(k*popravka + 1)
-        if popravka>self.interest_thresh:
-            interest =0
+        if popravka > self.interest_thresh:
+            interest = 0
         return interest
 
     def count_statistics(self, pics_for_stat, n_bins):
@@ -74,7 +74,7 @@ def create_descriptor_A():
     coordx = xs[0]
     coordy = ys[0]
 
-    checker = check_dispersion
+    checker = check_mean
     side = 4
 
     A = DescriptorA(checker, side)
